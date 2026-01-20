@@ -10,3 +10,5 @@ Thumbs.db
 mobile/android/
 mobile/ios/
 mobile/node_modules/
+.trae/
+Docs/
