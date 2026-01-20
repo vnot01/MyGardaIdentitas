@@ -5,7 +5,7 @@ services:
     build: .
     container_name: garda-identitas
     ports:
-      - "81:80" # Mapping Port Host 81 -> Port Container 80
+      - "8888:80" # Mapping Port Host 8888 -> Port Container 80
     volumes:
       - ./:/usr/share/nginx/html # Hot Reload: Mapping folder saat ini ke folder Nginx
     restart: unless-stopped

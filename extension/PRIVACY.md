@@ -23,6 +23,30 @@ We may update this privacy policy from time to time. Since we do not collect use
 If you have questions about this privacy policy, please open an issue in our GitHub repository.
 
 ---
+
+# Kebijakan Privasi (Bahasa Indonesia)
+
+**Terakhir Diperbarui:** 20 Januari 2026
+
+## 1. Pendahuluan
+GardaIdentitas menghormati privasi Anda. Kebijakan Privasi ini menjelaskan bagaimana Ekstensi Chrome GardaIdentitas menangani data pengguna.
+
+## 2. Pengumpulan dan Penggunaan Data
+**Kami tidak mengumpulkan, menyimpan, membagikan, atau mengirimkan data pengguna apa pun.**
+
+*   **Pemrosesan Lokal:** Semua pemrosesan gambar (watermarking) dilakukan sepenuhnya di dalam browser Anda (Client-Side) menggunakan teknologi HTML5 Canvas.
+*   **Tanpa Unggah Server:** Foto yang Anda pilih tidak pernah meninggalkan perangkat Anda. Foto tidak diunggah ke server mana pun.
+*   **Tanpa Analitik:** Kami tidak melacak penggunaan Anda atau mengumpulkan data perilaku.
+
+## 3. Justifikasi Izin
+*   **`activeTab`**: Diperlukan hanya untuk memungkinkan ekstensi berfungsi pada tab saat ini jika diperlukan.
+*   **Tanpa `host_permissions`**: Kami tidak meminta akses untuk membaca atau mengubah data di situs web yang Anda kunjungi.
+
+## 4. Perubahan Kebijakan
+Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Karena kami tidak mengumpulkan info kontak pengguna, kami menyarankan Anda untuk memeriksa halaman ini untuk pembaruan.
+
+---
+
 <div align="center">
 
 Made with ❤️
