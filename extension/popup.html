@@ -79,6 +79,31 @@
             max-width: 100%;
             height: auto;
         }
+        .footer {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+        }
+        .footer p { margin: 2px 0; }
+        .footer-btn {
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            margin: 4px 0;
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .footer-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+            border-color: #94a3b8;
+        }
     </style>
 </head>
 <body>
@@ -117,7 +142,7 @@
 
     <div class="footer">
         <p>Made with ❤️</p>
-        <p>Vibe Code • Version <span id="extensionVersion">Loading...</span></p>
+        <p>Version <span id="extensionVersion">Loading...</span></p>
         <button id="supportBtn" class="footer-btn">☕ Support Development</button>
         <p>Jazakumullah Khairan 🙏</p>
     </div>

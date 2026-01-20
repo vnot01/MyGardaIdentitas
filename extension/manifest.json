@@ -1,11 +1,9 @@
 {
   "manifest_version": 3,
   "name": "GardaIdentitas - Secure ID Watermarker",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Amankan foto KTP/Identitas Anda dengan watermark anti-hapus secara offline. 100% Client-Side Privacy.",
-  "permissions": [
-    "activeTab"
-  ],
+  "permissions": [],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

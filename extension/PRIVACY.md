@@ -21,3 +21,16 @@ We may update this privacy policy from time to time. Since we do not collect use
 
 ## 5. Contact
 If you have questions about this privacy policy, please open an issue in our GitHub repository.
+
+---
+<div align="center">
+
+Made with ❤️
+<br>
+Vibe Code • Version 1.2.0
+<br>
+<a href="https://saweria.co/vnot01" target="_blank">☕ Support Development</a>
+<br>
+Jazakumullah Khairan 🙏
+
+</div>

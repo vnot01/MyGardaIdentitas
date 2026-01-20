@@ -22,3 +22,13 @@ You must host a privacy policy. You can use the `PRIVACY.md` content from this r
 
 **Key Statement for Policy:**
 > "GardaIdentitas does not collect, store, or transmit any personal data. All image processing is performed locally on your device. We do not have access to your photos or identity information."
+
+---
+<div align="center">
+
+Made with ❤️
+Vibe Code • Version 1.2.0
+<a href="https://saweria.co/vnot01" target="_blank">☕ Support Development</a>
+Jazakumullah Khairan 🙏
+
+</div>

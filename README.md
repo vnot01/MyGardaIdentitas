@@ -65,3 +65,13 @@ npx cap run android
 
 ## Lisensi
 MIT License - Bebas digunakan dan dimodifikasi untuk kebaikan bersama.
+
+---
+<div align="center">
+
+Made with ❤️
+Vibe Code • Version 1.2.0
+<a href="https://saweria.co/vnot01" target="_blank">☕ Support Development</a>
+Jazakumullah Khairan 🙏
+
+</div>

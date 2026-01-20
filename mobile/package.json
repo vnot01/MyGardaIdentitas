@@ -1,7 +1,7 @@
 {
   "name": "garda-identitas-mobile",
-  "version": "1.0.0",
-  "description": "Mobile version of GardaIdentitas",
+  "version": "1.2.0",
+  "description": "Mobile app for GardaIdentitas",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
