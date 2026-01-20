@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  garda-identitas:
+    build: .
+    container_name: garda-identitas
+    ports:
+      - "81:80" # Mapping Port Host 81 -> Port Container 80
+    restart: unless-stopped

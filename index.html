@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GardaIdentitas - Secure ID Watermarker</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --danger: #dc2626;
+            --success: #16a34a;
+            --bg: #f8fafc;
+            --card: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: #1e293b;
+            line-height: 1.5;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .container {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        h1 { margin-top: 0; color: var(--primary); }
+        .header-logo { font-size: 2rem; margin-bottom: 0.5rem; }
+        .alert {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .secure-badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: var(--success);
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background: #1d4ed8; }
+        button.download { background: var(--success); display: none; }
+        
+        #preview-container {
+            margin-top: 2rem;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="secure-badge">🛡️ GardaIdentitas: 100% Offline & Aman</div>
+    <div class="header-logo">🇮🇩 GardaIdentitas</div>
+    <p>Alat pengaman data identitas (KTP/SIM) mandiri. Data Anda diproses di perangkat Anda sendiri.</p>
+    
+    <div class="alert">
+        <strong>Privasi Terjamin:</strong> Foto yang Anda pilih diproses langsung di browser (RAM) perangkat Anda. 
+        Tidak ada data yang dikirim ke server manapun. Hasil olahan disimpan kembali ke perangkat Anda.
+    </div>
+
+    <div class="form-group">
+        <label for="imageInput">1. Pilih Foto KTP/Identitas</label>
+        <input type="file" id="imageInput" accept="image/*">
+    </div>
+
+    <div class="controls">
+        <div class="form-group">
+            <label for="watermarkText">2. Teks Watermark (Tujuan Penggunaan)</label>
+            <input type="text" id="watermarkText" value="UNTUK VERIFIKASI APLIKASI SAYA - 2026" placeholder="Contoh: UNTUK DAFTAR BANK X - 20/01/2026">
+        </div>
+        <div class="form-group">
+            <label for="opacity">Transparansi Watermark</label>
+            <input type="range" id="opacity" min="0.1" max="1" step="0.1" value="0.4" style="width:100%">
+        </div>
+        <div class="form-group">
+            <label for="fontSize">Ukuran Font (<span id="fontSizeDisplay">12px</span>)</label>
+            <input type="range" id="fontSize" min="8" max="72" step="1" value="12" style="width:100%">
+        </div>
+    </div>
+
+    <button id="processBtn">Proses & Amankan Foto</button>
+    <button id="downloadBtn" class="download">Download Hasil</button>
+
+    <div id="preview-container">
+        <p class="placeholder">Preview akan muncul di sini...</p>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="legal-education" style="margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1rem;">
+        <details>
+            <summary style="cursor: pointer; color: var(--primary); font-weight: 600;">📚 Mengapa Watermark Ini Penting? (UU PDP & KUHP)</summary>
+            <div style="margin-top: 1rem; font-size: 0.9rem; color: #475569; text-align: left;">
+                <p><strong>1. UU Perlindungan Data Pribadi (UU PDP):</strong><br>
+                Sesuai prinsip <em>Purpose Limitation</em>, Anda berhak membatasi penggunaan data. Dengan watermark ini, Anda secara teknis menetapkan "Tujuan Spesifik" yang mengikat secara hukum.</p>
+                
+                <p><strong>2. KUHP & Sanksi Pidana:</strong><br>
+                Penyalahgunaan data identitas adalah tindak pidana. Watermark yang menyatu dengan foto mempersulit upaya pemalsuan dan penggunaan data tanpa izin oleh pihak tidak bertanggung jawab.</p>
+                
+                <p><strong>3. Pidana Korporasi (Pasal 120 UU No. 1/2023):</strong><br>
+                Korporasi yang menerima data ini bertanggung jawab penuh. Jika data ini bocor atau disalahgunakan di luar tujuan yang tertulis di watermark, korporasi dapat dikenai sanksi berat berupa denda hingga pembubaran.</p>
+            </div>
+        </details>
+    </div>
+</div>
+
+<script>
+    const imageInput = document.getElementById('imageInput');
+    const watermarkText = document.getElementById('watermarkText');
+    const opacityInput = document.getElementById('opacity');
+    const fontSizeInput = document.getElementById('fontSize');
+    const fontSizeDisplay = document.getElementById('fontSizeDisplay');
+    const processBtn = document.getElementById('processBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const previewContainer = document.getElementById('preview-container');
+    const placeholder = document.querySelector('.placeholder');
+
+    let uploadedImage = null;
+
+    // Hide canvas initially
+    canvas.style.display = 'none';
+
+    imageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    uploadedImage = img;
+                    // Auto process preview
+                    drawWatermark();
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    processBtn.addEventListener('click', drawWatermark);
+    
+    // Live update if wanted
+    watermarkText.addEventListener('input', () => { if(uploadedImage) drawWatermark(); });
+    opacityInput.addEventListener('input', () => { if(uploadedImage) drawWatermark(); });
+    fontSizeInput.addEventListener('input', (e) => { 
+        fontSizeDisplay.textContent = e.target.value + 'px';
+        if(uploadedImage) drawWatermark(); 
+    });
+
+    function drawWatermark() {
+        if (!uploadedImage) {
+            alert('Silakan pilih foto terlebih dahulu.');
+            return;
+        }
+
+        // Setup Canvas
+        canvas.width = uploadedImage.width;
+        canvas.height = uploadedImage.height;
+        
+        // Draw Original Image
+        ctx.drawImage(uploadedImage, 0, 0);
+
+        // Configure Watermark Style
+        const text = watermarkText.value.toUpperCase();
+        const fontSize = parseInt(fontSizeInput.value, 10);
+        ctx.font = `bold ${fontSize}px Arial`;
+        ctx.fillStyle = `rgba(255, 0, 0, ${opacityInput.value})`; // Red color for warning
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        // Rotate and tile the watermark
+        ctx.save();
+        // Create a pattern or just repeat text diagonally
+        const angle = -30 * Math.PI / 180;
+        const spacingX = fontSize * 10;
+        const spacingY = fontSize * 6;
+
+        // Simple tiling logic
+        for (let x = -canvas.width; x < canvas.width * 2; x += spacingX) {
+            for (let y = -canvas.height; y < canvas.height * 2; y += spacingY) {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(angle);
+                ctx.fillText(text, 0, 0);
+                ctx.restore();
+            }
+        }
+        
+        // Add a strong border/stamp effect in the center
+        ctx.restore();
+        ctx.save();
+        ctx.translate(canvas.width/2, canvas.height/2);
+        ctx.rotate(-15 * Math.PI / 180);
+        
+        // Main Central Stamp
+        // Central stamp should be larger than the tiled watermark
+        const centerFontSize = Math.max(fontSize * 2, 24); 
+        ctx.font = `900 ${centerFontSize}px Arial`;
+        ctx.fillStyle = `rgba(0, 0, 0, 0.3)`; // Shadow
+        ctx.fillText(text, 5, 5);
+        ctx.fillStyle = `rgba(255, 255, 255, 0.8)`;
+        ctx.fillText(text, 0, 0);
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 2;
+        ctx.strokeText(text, 0, 0);
+        
+        ctx.restore();
+
+        // Show result
+        canvas.style.display = 'block';
+        placeholder.style.display = 'none';
+        downloadBtn.style.display = 'inline-block';
+    }
+
+    downloadBtn.addEventListener('click', function() {
+        if (!uploadedImage) return;
+        
+        // Convert to JPG
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+        
+        // Create Link
+        const link = document.createElement('a');
+        link.download = 'GardaIdentitas-' + Date.now() + '.jpg';
+        link.href = dataUrl;
+        link.click();
+    });
+</script>
+
+</body>
+</html>

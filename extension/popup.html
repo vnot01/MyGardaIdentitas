@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GardaIdentitas Extension</title>
+    <style>
+        /* Extension Specific Styles (Small Width) */
+        :root {
+            --primary: #2563eb;
+            --danger: #dc2626;
+            --success: #16a34a;
+            --bg: #f8fafc;
+            --card: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: #1e293b;
+            padding: 1rem;
+            width: 360px; /* Standard extension popup width */
+            margin: 0;
+            font-size: 14px;
+        }
+        .container {
+            background: var(--card);
+            border-radius: 8px;
+        }
+        h1 { margin: 0 0 0.5rem 0; color: var(--primary); font-size: 1.2rem; }
+        .secure-badge {
+            background: #dcfce7;
+            color: var(--success);
+            padding: 2px 8px;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 10px;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; font-weight: 600; margin-bottom: 0.25rem; font-size: 12px; }
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 12px;
+        }
+        input[type="range"] { width: 100%; }
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            font-size: 12px;
+            margin-bottom: 0.5rem;
+        }
+        button:hover { background: #1d4ed8; }
+        button.download { background: var(--success); display: none; }
+        
+        #preview-container {
+            margin-top: 1rem;
+            border: 2px dashed #cbd5e1;
+            border-radius: 4px;
+            padding: 0.5rem;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="secure-badge">🛡️ Offline & Secure</div>
+    <h1>GardaIdentitas</h1>
+    
+    <div class="form-group">
+        <label for="imageInput">1. Foto KTP</label>
+        <input type="file" id="imageInput" accept="image/*">
+    </div>
+
+    <div class="form-group">
+        <label for="watermarkText">2. Teks Watermark</label>
+        <input type="text" id="watermarkText" value="UNTUK VERIFIKASI - 2026">
+    </div>
+
+    <div class="form-group">
+        <label for="opacity">Transparansi</label>
+        <input type="range" id="opacity" min="0.1" max="1" step="0.1" value="0.4">
+    </div>
+
+    <div class="form-group">
+        <label for="fontSize">Ukuran Font (<span id="fontSizeDisplay">12px</span>)</label>
+        <input type="range" id="fontSize" min="8" max="72" step="1" value="12">
+    </div>
+
+    <button id="processBtn">Proses</button>
+    <button id="downloadBtn" class="download">Download</button>
+
+    <div id="preview-container">
+        <p class="placeholder" style="font-size:10px; color:#666">Preview...</p>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="footer">
+        <p>Made with ❤️</p>
+        <p>Vibe Code • Version <span id="extensionVersion">Loading...</span></p>
+        <button id="supportBtn" class="footer-btn">☕ Support Development</button>
+        <p>Jazakumullah Khairan 🙏</p>
+    </div>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

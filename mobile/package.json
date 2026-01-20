@@ -1,0 +1,24 @@
+{
+  "name": "garda-identitas-mobile",
+  "version": "1.0.0",
+  "description": "Mobile version of GardaIdentitas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "privacy",
+    "watermark",
+    "offline"
+  ],
+  "author": "GardaIdentitas Team",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  }
+}

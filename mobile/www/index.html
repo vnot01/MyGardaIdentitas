@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>GardaIdentitas - Mobile</title>
+    <style>
+        /* Adaptasi Mobile: Touch-friendly & Safe Area */
+        :root {
+            --primary: #2563eb;
+            --danger: #dc2626;
+            --success: #16a34a;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --safe-area-top: env(safe-area-inset-top);
+            --safe-area-bottom: env(safe-area-inset-bottom);
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: #1e293b;
+            line-height: 1.5;
+            padding: calc(1rem + var(--safe-area-top)) 1rem calc(1rem + var(--safe-area-bottom));
+            margin: 0;
+            -webkit-user-select: none; /* Prevent text selection like native app */
+            user-select: none;
+        }
+        .container {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        h1 { margin-top: 0; color: var(--primary); font-size: 1.5rem; }
+        .header-logo { font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: bold; }
+        .secure-badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: var(--success);
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        .alert {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            border-radius: 0 4px 4px 0;
+        }
+        .form-group { margin-bottom: 1.25rem; }
+        label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px; /* Lebih bulat untuk mobile */
+            box-sizing: border-box;
+            font-size: 16px; /* Prevent zoom on iOS */
+        }
+        input[type="range"] {
+            width: 100%;
+            height: 24px; /* Larger touch target */
+        }
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%; /* Full width tombol di mobile */
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            active-opacity: 0.8;
+        }
+        button.download { background: var(--success); display: none; }
+        
+        #preview-container {
+            margin-top: 1.5rem;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 0.5rem;
+            text-align: center;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        details summary {
+            padding: 1rem 0;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="secure-badge">🛡️ Offline & Aman</div>
+    <div class="header-logo">🇮🇩 GardaIdentitas</div>
+    
+    <div class="alert">
+        <strong>Privasi Terjamin:</strong> Proses dilakukan di HP Anda (Local Processing). Tanpa upload server.
+    </div>
+
+    <div class="form-group">
+        <label for="imageInput">1. Pilih Foto KTP/Identitas</label>
+        <input type="file" id="imageInput" accept="image/*">
+    </div>
+
+    <div class="form-group">
+        <label for="watermarkText">2. Teks Watermark</label>
+        <input type="text" id="watermarkText" value="UNTUK VERIFIKASI APLIKASI SAYA - 2026">
+    </div>
+
+    <div class="form-group">
+        <label for="opacity">Transparansi</label>
+        <input type="range" id="opacity" min="0.1" max="1" step="0.1" value="0.4">
+    </div>
+
+    <div class="form-group">
+        <label for="fontSize">Ukuran Font (<span id="fontSizeDisplay">12px</span>)</label>
+        <input type="range" id="fontSize" min="8" max="72" step="1" value="12">
+    </div>
+
+    <button id="processBtn">Proses Foto</button>
+    <button id="downloadBtn" class="download">Simpan ke Galeri</button>
+
+    <div id="preview-container">
+        <p class="placeholder">Preview di sini...</p>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="legal-education" style="margin-top: 1rem; border-top: 1px solid #e2e8f0;">
+        <details>
+            <summary style="cursor: pointer; color: var(--primary); font-weight: 600;">📚 Info Hukum (UU PDP)</summary>
+            <div style="font-size: 0.85rem; color: #475569;">
+                <p>Dengan watermark ini, Anda menerapkan prinsip <strong>Purpose Limitation</strong> (Pembatasan Tujuan) sesuai UU PDP. Data Anda terlindungi secara hukum dari penggunaan di luar tujuan yang tertulis.</p>
+            </div>
+        </details>
+    </div>
+</div>
+
+<script>
+    // Logic yang sama dengan versi web, disederhanakan
+    const imageInput = document.getElementById('imageInput');
+    const watermarkText = document.getElementById('watermarkText');
+    const opacityInput = document.getElementById('opacity');
+    const fontSizeInput = document.getElementById('fontSize');
+    const fontSizeDisplay = document.getElementById('fontSizeDisplay');
+    const processBtn = document.getElementById('processBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const placeholder = document.querySelector('.placeholder');
+
+    let uploadedImage = null;
+    canvas.style.display = 'none';
+
+    imageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    uploadedImage = img;
+                    drawWatermark();
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    processBtn.addEventListener('click', drawWatermark);
+    
+    watermarkText.addEventListener('input', () => { if(uploadedImage) drawWatermark(); });
+    opacityInput.addEventListener('input', () => { if(uploadedImage) drawWatermark(); });
+    fontSizeInput.addEventListener('input', (e) => { 
+        fontSizeDisplay.textContent = e.target.value + 'px';
+        if(uploadedImage) drawWatermark(); 
+    });
+
+    function drawWatermark() {
+        if (!uploadedImage) {
+            alert('Pilih foto dulu ya!');
+            return;
+        }
+
+        canvas.width = uploadedImage.width;
+        canvas.height = uploadedImage.height;
+        
+        ctx.drawImage(uploadedImage, 0, 0);
+
+        const text = watermarkText.value.toUpperCase();
+        const fontSize = parseInt(fontSizeInput.value, 10);
+        ctx.font = `bold ${fontSize}px Arial`;
+        ctx.fillStyle = `rgba(255, 0, 0, ${opacityInput.value})`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        ctx.save();
+        const angle = -30 * Math.PI / 180;
+        const spacingX = fontSize * 10;
+        const spacingY = fontSize * 6;
+
+        for (let x = -canvas.width; x < canvas.width * 2; x += spacingX) {
+            for (let y = -canvas.height; y < canvas.height * 2; y += spacingY) {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(angle);
+                ctx.fillText(text, 0, 0);
+                ctx.restore();
+            }
+        }
+        
+        ctx.restore();
+        ctx.save();
+        ctx.translate(canvas.width/2, canvas.height/2);
+        ctx.rotate(-15 * Math.PI / 180);
+        
+        const centerFontSize = Math.max(fontSize * 2, 24); 
+        ctx.font = `900 ${centerFontSize}px Arial`;
+        ctx.fillStyle = `rgba(0, 0, 0, 0.3)`;
+        ctx.fillText(text, 5, 5);
+        ctx.fillStyle = `rgba(255, 255, 255, 0.8)`;
+        ctx.fillText(text, 0, 0);
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 2;
+        ctx.strokeText(text, 0, 0);
+        
+        ctx.restore();
+
+        canvas.style.display = 'block';
+        placeholder.style.display = 'none';
+        downloadBtn.style.display = 'inline-block';
+    }
+
+    downloadBtn.addEventListener('click', function() {
+        if (!uploadedImage) return;
+        
+        // Untuk Mobile App Native, idealnya menggunakan Capacitor Filesystem Plugin
+        // Tapi untuk MVP (Minimum Viable Product), anchor download masih bisa bekerja di beberapa WebView
+        // atau gunakan Share API jika didukung browser
+        
+        canvas.toBlob(function(blob) {
+            if (navigator.share) {
+                const file = new File([blob], 'GardaIdentitas-Secure.jpg', { type: 'image/jpeg' });
+                navigator.share({
+                    title: 'GardaIdentitas',
+                    text: 'Foto KTP yang sudah diamankan.',
+                    files: [file]
+                }).catch(console.error);
+            } else {
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                const link = document.createElement('a');
+                link.download = 'GardaIdentitas-' + Date.now() + '.jpg';
+                link.href = dataUrl;
+                link.click();
+            }
+        }, 'image/jpeg', 0.85);
+    });
+</script>
+
+</body>
+</html>
