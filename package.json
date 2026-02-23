@@ -1,0 +1,11 @@
+{
+  "name": "garda-identitas-project",
+  "version": "1.2.0",
+  "description": "Project root for GardaIdentitas Web, Mobile, and Extension",
+  "author": "vnot01",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vnot01/MyGardaIdentitas.git"
+  }
+}
