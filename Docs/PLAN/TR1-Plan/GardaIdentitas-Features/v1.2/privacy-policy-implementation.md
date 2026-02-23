@@ -29,7 +29,7 @@ Halaman baru yang didedikasikan untuk menjelaskan kebijakan privasi dengan struk
 
 ## Technical Verification
 - **File Path**: `/privacy.html`
-- **Access**: `http://localhost:81/privacy.html`
+- **Access**: `https://gardaidentitas.vnot.my.id/privacy.html`
 - **Responsiveness**: Tested for mobile and desktop layouts via CSS media queries.
 
 ## Future Recommendations

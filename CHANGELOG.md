@@ -1,3 +1,21 @@
+# GardaIdentitas v1.3.0: Expansion Pack & Automation 🚀
+
+GardaIdentitas semakin berkembang! Versi 1.3.0 membawa efisiensi baru bagi pengembangan dan penyelarasan di seluruh platform (Web, Mobile, dan Extension).
+
+#### 🤖 **Otomatisasi & Sinkronisasi**
+*   **Version Sync Engine**: Memperkenalkan `sync-version.py`. Sekarang, cukup update versi di `package.json` satu kali, dan seluruh ekosistem project akan tersinkronisasi secara otomatis.
+*   **Unified UI Versioning**: Perbaikan pada mekanisme display versi di frontend menggunakan ID `appVersion` untuk sinkronisasi runtime yang lebih akurat.
+
+#### 📱 **Ekspansi Ekosistem**
+*   **Expansion Pack**: Integrasi kode yang lebih matang antara modul Mobile, Extension, dan Web dalam satu struktur workspace yang solid.
+*   **GitHub Official Linking**: Workspace sekarang secara resmi terhubung ke repository utama `vnot01/MyGardaIdentitas.git`.
+
+#### 🔧 **Peningkatan Teknis**
+*   **Cloudflare & Tunneling Optimization**: Penyaluran akses yang lebih stabil melalui infrastruktur Cloudflare Tunnel.
+*   **Docker Health Checks**: Optimasi konfigurasi container untuk memastikan layanan selalu tersedia.
+
+---
+
 # GardaIdentitas v1.2.0: Lebih Aman, Lebih Privat, Lebih Indonesia 🇮🇩
 
 Assalamualaikum & Halo Warga Digital! 👋
