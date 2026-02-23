@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,20 +14,29 @@
             --bg: #f8fafc;
             --card: #ffffff;
         }
+
         body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--bg);
             color: #1e293b;
             padding: 1rem;
-            width: 360px; /* Standard extension popup width */
+            width: 360px;
+            /* Standard extension popup width */
             margin: 0;
             font-size: 14px;
         }
+
         .container {
             background: var(--card);
             border-radius: 8px;
         }
-        h1 { margin: 0 0 0.5rem 0; color: var(--primary); font-size: 1.2rem; }
+
+        h1 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
         .secure-badge {
             background: #dcfce7;
             color: var(--success);
@@ -37,9 +47,20 @@
             margin-bottom: 0.5rem;
             display: inline-block;
         }
-        .form-group { margin-bottom: 1rem; }
-        label { display: block; font-weight: 600; margin-bottom: 0.25rem; font-size: 12px; }
-        input[type="text"], input[type="file"] {
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            font-size: 12px;
+        }
+
+        input[type="text"],
+        input[type="file"] {
             width: 100%;
             padding: 8px;
             border: 1px solid #cbd5e1;
@@ -47,7 +68,11 @@
             box-sizing: border-box;
             font-size: 12px;
         }
-        input[type="range"] { width: 100%; }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
         button {
             background: var(--primary);
             color: white;
@@ -60,9 +85,16 @@
             font-size: 12px;
             margin-bottom: 0.5rem;
         }
-        button:hover { background: #1d4ed8; }
-        button.download { background: var(--success); display: none; }
-        
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button.download {
+            background: var(--success);
+            display: none;
+        }
+
         #preview-container {
             margin-top: 1rem;
             border: 2px dashed #cbd5e1;
@@ -75,10 +107,12 @@
             justify-content: center;
             overflow: hidden;
         }
+
         canvas {
             max-width: 100%;
             height: auto;
         }
+
         .footer {
             margin-top: 0.75rem;
             padding-top: 0.75rem;
@@ -87,7 +121,11 @@
             font-size: 11px;
             color: #64748b;
         }
-        .footer p { margin: 2px 0; }
+
+        .footer p {
+            margin: 2px 0;
+        }
+
         .footer-btn {
             background: #f1f5f9;
             color: #334155;
@@ -99,6 +137,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
+
         .footer-btn:hover {
             background: #e2e8f0;
             color: #0f172a;
@@ -106,48 +145,50 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="secure-badge">🛡️ Offline & Secure</div>
-    <h1>GardaIdentitas</h1>
-    
-    <div class="form-group">
-        <label for="imageInput">1. Foto KTP</label>
-        <input type="file" id="imageInput" accept="image/*">
+    <div class="container">
+        <div class="secure-badge">🛡️ Offline & Secure</div>
+        <h1>GardaIdentitas</h1>
+
+        <div class="form-group">
+            <label for="imageInput">1. Foto KTP</label>
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+
+        <div class="form-group">
+            <label for="watermarkText">2. Teks Watermark</label>
+            <input type="text" id="watermarkText" value="UNTUK VERIFIKASI - 2026">
+        </div>
+
+        <div class="form-group">
+            <label for="opacity">Transparansi</label>
+            <input type="range" id="opacity" min="0.1" max="1" step="0.1" value="0.4">
+        </div>
+
+        <div class="form-group">
+            <label for="fontSize">Ukuran Font (<span id="fontSizeDisplay">12px</span>)</label>
+            <input type="range" id="fontSize" min="8" max="72" step="1" value="12">
+        </div>
+
+        <button id="downloadBtn" class="download">Download</button>
+
+        <div id="preview-container">
+            <p class="placeholder" style="font-size:10px; color:#666">Preview...</p>
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <div class="footer">
+            <p>Made with ❤️</p>
+            <p>Version <span id="extensionVersion">...</span></p>
+            <button id="supportBtn" class="footer-btn">☕ Support Development</button>
+            <button id="privacyBtn" class="footer-btn">🔒 Privacy Policy</button>
+            <p>Jazakumullah Khairan 🙏</p>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="watermarkText">2. Teks Watermark</label>
-        <input type="text" id="watermarkText" value="UNTUK VERIFIKASI - 2026">
-    </div>
-
-    <div class="form-group">
-        <label for="opacity">Transparansi</label>
-        <input type="range" id="opacity" min="0.1" max="1" step="0.1" value="0.4">
-    </div>
-
-    <div class="form-group">
-        <label for="fontSize">Ukuran Font (<span id="fontSizeDisplay">12px</span>)</label>
-        <input type="range" id="fontSize" min="8" max="72" step="1" value="12">
-    </div>
-
-    <button id="processBtn">Proses</button>
-    <button id="downloadBtn" class="download">Download</button>
-
-    <div id="preview-container">
-        <p class="placeholder" style="font-size:10px; color:#666">Preview...</p>
-        <canvas id="canvas"></canvas>
-    </div>
-
-    <div class="footer">
-        <p>Made with ❤️</p>
-        <p>Version <span id="extensionVersion">Loading...</span></p>
-        <button id="supportBtn" class="footer-btn">☕ Support Development</button>
-        <p>Jazakumullah Khairan 🙏</p>
-    </div>
-</div>
-
-<script src="popup.js"></script>
+    <script src="popup.js"></script>
 </body>
+
 </html>

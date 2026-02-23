@@ -51,7 +51,7 @@ Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu. Karena kami ti
 
 Made with ❤️
 <br>
-Vibe Code • Version 1.2.0
+Vibe Code • Version 1.3.0
 <br>
 <a href="https://saweria.co/vnot01" target="_blank">☕ Support Development</a>
 <br>

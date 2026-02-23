@@ -27,7 +27,7 @@ You must host a privacy policy. You can use the `PRIVACY.md` content from this r
 <div align="center">
 
 Made with ❤️
-Vibe Code • Version 1.2.0
+Vibe Code • Version 1.3.0
 <a href="https://saweria.co/vnot01" target="_blank">☕ Support Development</a>
 Jazakumullah Khairan 🙏
 

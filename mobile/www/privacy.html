@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebijakan Privasi - GardaIdentitas</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --danger: #dc2626;
+            --success: #16a34a;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .container {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        h1 { margin-top: 0; color: var(--primary); font-size: 2rem; }
+        h2 { color: var(--text); margin-top: 2rem; font-size: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+        p, ul { margin-bottom: 1rem; color: #334155; }
+        ul { padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+        
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .back-btn:hover { color: var(--primary); }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Tracking Pixel Simulation */
+        .tracking-info {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            .container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-header">
+        <a href="index.html" class="back-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Kembali ke Beranda
+        </a>
+        <div style="font-weight: bold; color: var(--primary);">GardaIdentitas 🛡️</div>
+    </div>
+
+    <h1>Kebijakan Privasi</h1>
+    <p><strong>Terakhir Diperbarui:</strong> 20 Januari 2026</p>
+
+    <section id="collection">
+        <h2>1. Pengumpulan Data</h2>
+        <p>Di GardaIdentitas, privasi Anda adalah prioritas utama kami. Kami menerapkan prinsip <strong>Data Minimization</strong> dan <strong>Local Processing</strong>.</p>
+        <ul>
+            <li><strong>Tidak Ada Pengumpulan Data Server:</strong> Kami tidak mengunggah, menyimpan, atau mentransfer foto identitas (KTP/SIM) Anda ke server mana pun.</li>
+            <li><strong>Pemrosesan Lokal:</strong> Semua proses watermarking dilakukan sepenuhnya di dalam memori browser (Client-Side) perangkat Anda menggunakan teknologi HTML5 Canvas.</li>
+            <li><strong>Data Volatile:</strong> Data gambar yang Anda pilih hanya ada di RAM saat tab browser terbuka dan akan hilang segera setelah Anda menutup atau memuat ulang halaman.</li>
+        </ul>
+    </section>
+
+    <section id="usage">
+        <h2>2. Penggunaan Data</h2>
+        <p>Data yang Anda masukkan (gambar dan teks watermark) digunakan semata-mata untuk tujuan fungsional aplikasi:</p>
+        <ul>
+            <li>Untuk menampilkan pratinjau (preview) di layar Anda.</li>
+            <li>Untuk menggabungkan teks watermark dengan gambar asli.</li>
+            <li>Untuk menghasilkan file gambar baru yang dapat Anda unduh.</li>
+        </ul>
+        <p>Kami tidak menggunakan data Anda untuk analitik perilaku, pelacakan iklan, atau tujuan komersial lainnya.</p>
+    </section>
+
+    <section id="protection">
+        <h2>3. Perlindungan Data</h2>
+        <p>Karena data tidak pernah meninggalkan perangkat Anda, risiko kebocoran data melalui jaringan (Man-in-the-Middle Attack) atau peretasan server dihilangkan sepenuhnya.</p>
+        <ul>
+            <li><strong>Isolasi Sandbox:</strong> Aplikasi berjalan dalam lingkungan sandbox browser yang aman.</li>
+            <li><strong>Tanpa Database:</strong> Kami tidak memiliki database pengguna.</li>
+        </ul>
+    </section>
+
+    <section id="rights">
+        <h2>4. Hak Pengguna</h2>
+        <p>Sebagai pengguna, Anda memiliki hak penuh atas data Anda:</p>
+        <ul>
+            <li><strong>Hak untuk Tahu:</strong> Anda berhak mengetahui bagaimana data Anda diproses (dijelaskan dalam dokumen ini).</li>
+            <li><strong>Hak Kontrol Penuh:</strong> Anda memegang kendali penuh atas file asli dan hasil olahan.</li>
+            <li><strong>Tanpa Jejak:</strong> Anda dapat menghapus history browser Anda untuk menghilangkan jejak penggunaan aplikasi ini di perangkat lokal Anda.</li>
+        </ul>
+    </section>
+
+    <section id="changes">
+        <h2>5. Perubahan Kebijakan</h2>
+        <p>Kami mungkin memperbarui kebijakan privasi ini dari waktu ke waktu untuk mencerminkan perubahan teknologi atau hukum yang berlaku. Perubahan akan diumumkan di halaman ini dengan tanggal pembaruan yang baru.</p>
+    </section>
+
+    <div class="footer">
+        <p>&copy; 2026 GardaIdentitas. Aman, Pribadi, Terpercaya.</p>
+    </div>
+    
+    <div id="tracking-pixel" style="display:none;"></div>
+</div>
+
+<script>
+    // Simple Tracking Implementation
+    (function() {
+        const page = 'privacy_policy';
+        const timestamp = new Date().toISOString();
+        
+        // 1. Console Logging (Development/Debug)
+        console.log(`[Analytics] Page View: ${page} at ${timestamp}`);
+        
+        // 2. Local Storage Counter (Simple User-Level Tracking)
+        try {
+            const key = `garda_stats_${page}_views`;
+            let views = parseInt(localStorage.getItem(key) || '0');
+            views++;
+            localStorage.setItem(key, views);
+            console.log(`[Analytics] Total views by you: ${views}`);
+            
+            // Optional: Simulate sending to an analytics server
+            // fetch('https://analytics.example.com/collect', { ... });
+        } catch (e) {
+            console.warn('[Analytics] LocalStorage access failed', e);
+        }
+    })();
+</script>
+
+</body>
+</html>
